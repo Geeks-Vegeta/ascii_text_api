@@ -10,8 +10,8 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-        name: Test
-        command: pytest -v
+          name: Test
+          command: pytest -v
 workflows:
   sample: 
     jobs:

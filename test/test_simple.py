@@ -1,7 +1,6 @@
 import sys
 import os
 value = os.path.dirname(os.path.abspath("app.py"))
-
 sys.path.append(value)
 
 from app import app

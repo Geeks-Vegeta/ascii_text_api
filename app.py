@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Api
 from pyfiglet import figlet_format
 
@@ -17,7 +17,7 @@ def ascii_pre():
     fonts = request.args.get('fonts')
     query = request.args.get('query')
     art=figlet_format(text=query,font=fonts)
-    return f"<pre>{art}</pre>"
+    return f"<pre>{art}</pre>", 201
 
 api.add_resource(AsciiRoute, "/ascii")
 

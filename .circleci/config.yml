@@ -1,6 +1,8 @@
 version: 2.1
 orbs:
   python: circleci/python@1.5.0
+  heroku: circleci/heroku@x.y
+
 jobs:
   build: 
     docker:
@@ -12,7 +14,22 @@ jobs:
       - run:
           name: Test
           command: pytest -v
+
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          command: >
+            echo "The command above installs Heroku, the command below deploys.
+            What you do inbetween is up to you!"
+      - heroku/deploy-via-git
+
 workflows:
   sample: 
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
